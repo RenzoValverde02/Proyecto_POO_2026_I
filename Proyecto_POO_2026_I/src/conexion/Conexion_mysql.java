@@ -4,39 +4,32 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conexion_mysql {
-	
-	private static final String URL =
-            "jdbc:mysql://localhost:3306/restauranteSysGourmet_db";
 
-    private static final String USUARIO = "root";
+	private static final String URL = "jdbc:mysql://localhost:3306/restauranteSysGourmet_db";
 
-    private static final String PASSWORD = "mysql";
+	private static final String USUARIO = "root";
 
-    public static Connection conectar() {
+	private static final String PASSWORD = "mysql";
 
-        Connection conexion = null;
+	public static Connection conectar() {
 
-        try {
+		Connection conexion = null;
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+		try {
 
-            conexion = DriverManager.getConnection(
-                    URL,
-                    USUARIO,
-                    PASSWORD
-            );
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.out.println("Conexión exitosa.");
+			conexion = DriverManager.getConnection(URL, USUARIO, PASSWORD);
 
-        } catch (Exception e) {
+			System.out.println("Conexión exitosa.");
 
-            System.out.println(
-                    "Error: " + e.getMessage()
-            );
+		} catch (Exception e) {
 
-        }
+			System.out.println("Error: " + e.getMessage());
 
-        return conexion;
-    }
+		}
+
+		return conexion;
+	}
 
 }
