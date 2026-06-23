@@ -23,8 +23,15 @@ CREATE TABLE IF NOT EXISTS usuarios (
     CHECK (estado IN (0, 1))
 ) ENGINE=InnoDB;
 
+-- =========================================================
+-- DATOS POR DEFECTO (Para que funcione en otras PCs)
+-- =========================================================
 
-
+INSERT INTO usuarios (nombre, apellido, usuario, contrasena, rol, estado) VALUES 
+('Jefe', 'Admin', 'admin', '123456', 'ADMIN', 1),
+('Juan', 'Mozo', 'juan', '123456', 'MOZO', 1),
+('Maria', 'Cajera', 'maria', '123456', 'CAJERO', 1),
+('Carlos', 'Cocinero', 'carlos', '123456', 'COCINERO', 1);
 -- MESAS
 
 CREATE TABLE IF NOT EXISTS mesas (
