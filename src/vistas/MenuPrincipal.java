@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
-import vistas.FrmMesasPedidos;
 
 public class MenuPrincipal extends JFrame {
 
@@ -125,10 +124,10 @@ public class MenuPrincipal extends JFrame {
 		btncobrosYCaja.setBounds(312, 206, 133, 142);
 		contentPane.add(btncobrosYCaja);
 		
-		// Fondo Oscuro de Restaurante
+	
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/fondo_oscuro.png")));
-		lblFondo.setBounds(0, 42, 506, 320); // El tamaño exacto sin tapar la barra azul
+		lblFondo.setBounds(0, 42, 506, 320);
 		contentPane.add(lblFondo);
 
 	}

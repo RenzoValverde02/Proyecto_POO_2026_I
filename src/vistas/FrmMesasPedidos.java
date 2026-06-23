@@ -9,10 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 //IMPORTS AGREGADODOS POR RENZO
 import java.sql.*;
@@ -33,8 +31,8 @@ public class FrmMesasPedidos extends JFrame {
 	double total = 0.00;
 	String[] columnas = {"Comida", "Cantidad", "Precio", "Sub total"};
 	
-	private JComboBox cmbMesa;
-	private JComboBox cmbProducto;
+	private JComboBox<String> cmbMesa;
+	private JComboBox<String> cmbProducto;
 	private JLabel lblTotal;
 	
 
@@ -61,55 +59,77 @@ public class FrmMesasPedidos extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 691, 446);
 		contentPane = new JPanel();
+		contentPane.setBackground(new java.awt.Color(240, 242, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("MESAS Y PEDIDOS");
-		lblNewLabel.setBounds(110, 11, 172, 14);
+		lblNewLabel.setFont(new java.awt.Font("Segoe UI Black", java.awt.Font.BOLD, 22));
+		lblNewLabel.setForeground(new java.awt.Color(41, 128, 185));
+		lblNewLabel.setBounds(20, 11, 250, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Mesa :");
-		lblNewLabel_1.setBounds(10, 48, 46, 14);
+		lblNewLabel_1.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+		lblNewLabel_1.setForeground(java.awt.Color.BLACK);
+		lblNewLabel_1.setBounds(20, 60, 60, 25);
 		contentPane.add(lblNewLabel_1);
 		
 		//cambiamos el nombre x variable cbmmesa y cbm producto
-		cmbMesa = new JComboBox();
-		cmbMesa.setBounds(86, 44, 196, 22);
+		cmbMesa = new JComboBox<>();
+		cmbMesa.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+		cmbMesa.setBounds(100, 60, 250, 30);
 		contentPane.add(cmbMesa);
 		
 		JLabel lblNewLabel_2 = new JLabel("Producto :");
-		lblNewLabel_2.setBounds(10, 90, 58, 14);
+		lblNewLabel_2.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+		lblNewLabel_2.setForeground(java.awt.Color.BLACK);
+		lblNewLabel_2.setBounds(20, 105, 80, 25);
 		contentPane.add(lblNewLabel_2);
 		
-		cmbProducto = new JComboBox();
-		cmbProducto.setBounds(86, 87, 196, 22);
+		cmbProducto = new JComboBox<>();
+		cmbProducto.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+		cmbProducto.setBounds(100, 105, 250, 30);
 		contentPane.add(cmbProducto);
 		
 		JLabel lblNewLabel_3 = new JLabel("Cantidad :");
-		lblNewLabel_3.setBounds(10, 132, 58, 14);
+		lblNewLabel_3.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+		lblNewLabel_3.setForeground(java.awt.Color.BLACK);
+		lblNewLabel_3.setBounds(20, 150, 80, 25);
 		contentPane.add(lblNewLabel_3);
 		
 		txtCantidad = new JTextField();
-		txtCantidad.setBounds(86, 130, 46, 20);
+		txtCantidad.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+		txtCantidad.setBounds(100, 150, 80, 30);
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
 		
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+		btnAgregar.setBackground(new java.awt.Color(41, 128, 185));
+		btnAgregar.setForeground(java.awt.Color.WHITE);
+		btnAgregar.setFocusPainted(false);
+		btnAgregar.setBorderPainted(false);
 		
 		//agregamos el metodo actionlistener 
 		btnAgregar.addActionListener(e->agregarProducto());
 		
-		btnAgregar.setBounds(413, 31, 137, 35);
+		btnAgregar.setBounds(413, 60, 160, 40);
 		contentPane.add(btnAgregar);
 		
 		JButton btnGuardarPedido = new JButton("Guardar Pedido");
+		btnGuardarPedido.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+		btnGuardarPedido.setBackground(new java.awt.Color(46, 204, 113));
+		btnGuardarPedido.setForeground(java.awt.Color.WHITE);
+		btnGuardarPedido.setFocusPainted(false);
+		btnGuardarPedido.setBorderPainted(false);
 		btnGuardarPedido.addActionListener(e->guardarPedido());
-		btnGuardarPedido.setBounds(413, 86, 137, 37);
+		btnGuardarPedido.setBounds(413, 115, 160, 40);
 		contentPane.add(btnGuardarPedido);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(86, 206, 530, 99);
+		scrollPane.setBounds(20, 200, 553, 120);
 		contentPane.add(scrollPane);
 		
 		tblPedido = new JTable();
@@ -123,13 +143,17 @@ public class FrmMesasPedidos extends JFrame {
 		scrollPane.setViewportView(tblPedido);
 		
 		JLabel lblNewLabel_5 = new JLabel("Total :");
-		lblNewLabel_5.setBounds(86, 333, 46, 14);
+		lblNewLabel_5.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+		lblNewLabel_5.setForeground(java.awt.Color.BLACK);
+		lblNewLabel_5.setBounds(390, 335, 60, 25);
 		contentPane.add(lblNewLabel_5);
 		
 		
 		//canbiamos la variable
 		lblTotal = new JLabel("S/ 0.00");
-		lblTotal.setBounds(133, 333, 82, 14);
+		lblTotal.setFont(new java.awt.Font("Segoe UI Black", java.awt.Font.BOLD, 22));
+		lblTotal.setForeground(new java.awt.Color(192, 57, 43));
+		lblTotal.setBounds(460, 335, 120, 30);
 		contentPane.add(lblTotal);
 		
 		//objeto y seteamos la tablaPedido x renzo  
@@ -140,6 +164,10 @@ public class FrmMesasPedidos extends JFrame {
 		cargarProductos();
 		cargarMesas();
 		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new javax.swing.ImageIcon(FrmMesasPedidos.class.getResource("/imagenes/fondo_restaurante_blanco.png")));
+		lblFondo.setBounds(0, 0, 691, 446);
+		contentPane.add(lblFondo);
 
 	}
 	
