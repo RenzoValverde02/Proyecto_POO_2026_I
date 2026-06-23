@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import vistas.FrmMesasPedidos;
 
 public class MenuPrincipal extends JFrame {
 
@@ -72,6 +73,13 @@ public class MenuPrincipal extends JFrame {
 		btnNewButton.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//llevar al otro jframe mesas 
+				 FrmMesasPedidos frm = new FrmMesasPedidos();
+
+			        frm.setVisible(true);
+
+			        dispose();
 			}
 		});
 		btnNewButton.setBounds(69, 53, 133, 142);

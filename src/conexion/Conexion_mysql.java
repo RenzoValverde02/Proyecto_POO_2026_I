@@ -9,7 +9,7 @@ public class Conexion_mysql {
 
 	private static final String USUARIO = "root";
 
-	private static final String PASSWORD = "root";
+	private static final String PASSWORD = "mysql";
 
 	public static Connection conectar() {
 
