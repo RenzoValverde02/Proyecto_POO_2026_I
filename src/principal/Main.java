@@ -6,9 +6,11 @@ import conexion.Conexion_mysql;
 
 public class Main {
 
+	// PUNTO DE ENTRADA PRINCIPAL
 	public static void main(String[] args) {
 		
-		// TODO Auto-generated method stub
+		// PRUEBA DE CONEXION A LA BD
+		
 		Connection cn = Conexion_mysql.conectar();
 
 		if (cn != null) {

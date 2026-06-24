@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 
 public class Conexion_mysql {
 
+// CREDENCIALES DE BASE DE DATOS
 	private static final String URL = "jdbc:mysql://localhost:3306/restauranteSysGourmet_db";
 
 	private static final String USUARIO = "root";
 	private static final String PASSWORD = "root";
 
+// METODO DE CONEXION
 	public static Connection conectar() {
 
 		Connection conexion = null;

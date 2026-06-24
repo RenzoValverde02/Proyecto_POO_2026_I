@@ -1,16 +1,22 @@
 package modelo;
 
-public class Usuario {
+public abstract class Usuario {
+    // VARIABLES
     private int idUsuario;
     private String nombre;
     private String apellido;
     private String usuario;
     private String contrasena;
-    private String rol;
+    protected String rol;
     private int estado;
 
+    // CONSTRUCTORES
     public Usuario() {}
 
+    // MÉTODO ABSTRACTO (Polimorfismo)
+    public abstract String getDescripcionRol();
+
+    // METODOS 
     public int getIdUsuario() { return idUsuario; }
     public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
 

@@ -7,6 +7,8 @@ import conexion.Conexion_mysql;
 import modelo.Usuario;
 
 public class BaseDeDatosUsuario {
+	
+// VALIDACION DE INICIO DE SESION
 
     public Usuario login(String usuario, String contrasena) {
         Usuario usu = null;
@@ -21,7 +23,7 @@ public class BaseDeDatosUsuario {
             ResultSet rs = pst.executeQuery();
             
             if (rs.next()) {
-                usu = new Usuario();
+                usu = new modelo.Empleado();
                 usu.setIdUsuario(rs.getInt("id_usuario"));
                 usu.setNombre(rs.getString("nombre"));
                 usu.setApellido(rs.getString("apellido"));

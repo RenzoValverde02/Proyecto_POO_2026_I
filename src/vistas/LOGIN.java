@@ -23,9 +23,7 @@ public class LOGIN extends JFrame {
 	private JTextField txtUsuario;
 	private JPasswordField txtContrasena;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,9 +37,7 @@ public class LOGIN extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public LOGIN() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
@@ -113,7 +109,7 @@ public class LOGIN extends JFrame {
 					    javax.swing.JOptionPane.showMessageDialog(null, "Bienvenido " + u.getNombre());
 					    
 					  
-					    MenuPrincipal menu = new MenuPrincipal();
+					    MenuPrincipal menu = new MenuPrincipal(u.getIdUsuario());
 					    menu.setVisible(true);
 					    
 					    
@@ -128,11 +124,11 @@ public class LOGIN extends JFrame {
 			
 		});
 		btnIngresar.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		btnIngresar.setBackground(new Color(41, 128, 185)); // Azul profesional
-		btnIngresar.setForeground(Color.WHITE); // Letras blancas
-		btnIngresar.setFocusPainted(false); // Sin el feo borde al hacer clic
-		btnIngresar.setBorderPainted(false); // Botón plano moderno
-		btnIngresar.setBounds(100, 240, 250, 45); // Botón bien ancho y centrado
+		btnIngresar.setBackground(new Color(41, 128, 185)); 
+		btnIngresar.setForeground(Color.WHITE); 
+		btnIngresar.setFocusPainted(false);
+		btnIngresar.setBorderPainted(false); 
+		btnIngresar.setBounds(100, 240, 250, 45); 
 		contentPane.add(btnIngresar);
 
 	}
