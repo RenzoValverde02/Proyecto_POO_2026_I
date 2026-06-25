@@ -92,6 +92,13 @@ public class MenuPrincipal extends JFrame {
 		btncarta.setBorderPainted(false);
 		btncarta.setFocusPainted(false);
 		btncarta.setBackground(new Color(50, 205, 50));
+		btncarta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VistaCarta frm = new VistaCarta(idUsuarioLogueado);
+				frm.setVisible(true);
+				dispose();
+			}
+		});
 		btncarta.setBounds(312, 53, 133, 142);
 		contentPane.add(btncarta);
 		

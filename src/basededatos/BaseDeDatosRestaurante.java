@@ -125,4 +125,61 @@ public class BaseDeDatosRestaurante {
         cn.close();
         return lista;
     }
+
+    // ==========================================
+    // METODOS CRUD PARA GESTION DE MENU (CARTA)
+    // ==========================================
+    
+    public boolean insertarProducto(String nombre, double precio, String categoria, String estado) {
+        String sql = "INSERT INTO menu_items (nombre, precio, categoria, estado) VALUES (?, ?, ?, ?)";
+        try {
+            Connection cn = Conexion_mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            pst.setDouble(2, precio);
+            pst.setString(3, categoria);
+            pst.setString(4, estado);
+            pst.executeUpdate();
+            cn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error insertando producto: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean actualizarProducto(int idItem, String nombre, double precio, String categoria, String estado) {
+        String sql = "UPDATE menu_items SET nombre=?, precio=?, categoria=?, estado=? WHERE id_item=?";
+        try {
+            Connection cn = Conexion_mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            pst.setDouble(2, precio);
+            pst.setString(3, categoria);
+            pst.setString(4, estado);
+            pst.setInt(5, idItem);
+            pst.executeUpdate();
+            cn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error actualizando producto: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean cambiarEstadoProducto(int idItem, String nuevoEstado) {
+        String sql = "UPDATE menu_items SET estado=? WHERE id_item=?";
+        try {
+            Connection cn = Conexion_mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, nuevoEstado);
+            pst.setInt(2, idItem);
+            pst.executeUpdate();
+            cn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error cambiando estado de producto: " + e.getMessage());
+            return false;
+        }
+    }
 }

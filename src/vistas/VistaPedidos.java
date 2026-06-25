@@ -70,6 +70,20 @@ public class VistaPedidos extends JFrame {
 		lblNewLabel.setBounds(20, 11, 250, 30);
 		contentPane.add(lblNewLabel);
 		
+		JButton btnRegresar = new JButton("Volver al Menú");
+		btnRegresar.setBackground(new java.awt.Color(52, 73, 94));
+		btnRegresar.setForeground(java.awt.Color.WHITE);
+		btnRegresar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+		btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				MenuPrincipal menu = new MenuPrincipal(idMozoActual);
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		btnRegresar.setBounds(520, 15, 130, 30);
+		contentPane.add(btnRegresar);
+		
 		JLabel lblNewLabel_1 = new JLabel("Mesa :");
 		lblNewLabel_1.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
 		lblNewLabel_1.setForeground(java.awt.Color.BLACK);
