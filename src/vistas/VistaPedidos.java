@@ -17,6 +17,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import conexion.Conexion_mysql;
+import java.awt.Color;
 
 public class VistaPedidos extends JFrame {
 
@@ -25,8 +26,6 @@ public class VistaPedidos extends JFrame {
 	private JTextField txtCantidad;
 	private JTextField txtNotas;
 	private JTable tblPedido;
-	
-	//VARIABLES 
 	
 	DefaultTableModel modelo;
 	double total = 0.00;
@@ -66,12 +65,12 @@ public class VistaPedidos extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("MESAS Y PEDIDOS");
 		lblNewLabel.setFont(new java.awt.Font("Segoe UI Black", java.awt.Font.BOLD, 22));
-		lblNewLabel.setForeground(new java.awt.Color(41, 128, 185));
+		lblNewLabel.setForeground(new Color(0, 51, 51));
 		lblNewLabel.setBounds(20, 11, 250, 30);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnRegresar = new JButton("Volver al Menú");
-		btnRegresar.setBackground(new java.awt.Color(52, 73, 94));
+		JButton btnRegresar = new JButton("REGRESAR");
+		btnRegresar.setBackground(new Color(0, 51, 51));
 		btnRegresar.setForeground(java.awt.Color.WHITE);
 		btnRegresar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
 		btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +215,7 @@ public class VistaPedidos extends JFrame {
 		cargarMesas();
 		
 		JLabel lblFondo = new JLabel("");
+		lblFondo.setForeground(new Color(0, 51, 51));
 		lblFondo.setIcon(new javax.swing.ImageIcon(VistaPedidos.class.getResource("/imagenes/fondo_restaurante_blanco.png")));
 		lblFondo.setBounds(0, 0, 691, 520);
 		contentPane.add(lblFondo);

@@ -182,4 +182,82 @@ public class BaseDeDatosRestaurante {
             return false;
         }
     }
+	// === METODOS PARA MODULO CAJA ===
+	
+	public java.util.ArrayList<String> listarPedidosPendientes() {
+		java.util.ArrayList<String> lista = new java.util.ArrayList<>();
+		String sql = "SELECT p.id_pedido, m.numero_mesa FROM pedidos p INNER JOIN mesas m ON p.id_mesa = m.id_mesa WHERE p.estado = 'PENDIENTE'";
+		try {
+			Connection cn = Conexion_mysql.conectar();
+			PreparedStatement pst = cn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				lista.add(rs.getInt("id_pedido") + " - Mesa " + rs.getString("numero_mesa"));
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Error listando pedidos pendientes: " + e.getMessage());
+		}
+		return lista;
+	}
+	
+	public javax.swing.table.DefaultTableModel obtenerDetallePedidoParaCaja(int idPedido) {
+		javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+			new Object[][] {},
+			new String[] { "Producto", "Cant.", "Precio Unit.", "Subtotal" }
+		) {
+			public boolean isCellEditable(int row, int column) { return false; }
+		};
+		
+		String sql = "SELECT m.nombre, d.cantidad, d.precio_unitario, (d.cantidad * d.precio_unitario) as subtotal " +
+					 "FROM detalle_pedido d INNER JOIN menu_items m ON d.id_item = m.id_item " +
+					 "WHERE d.id_pedido = ?";
+		try {
+			Connection cn = Conexion_mysql.conectar();
+			PreparedStatement pst = cn.prepareStatement(sql);
+			pst.setInt(1, idPedido);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				modelo.addRow(new Object[] {
+					rs.getString("nombre"),
+					rs.getInt("cantidad"),
+					rs.getDouble("precio_unitario"),
+					rs.getDouble("subtotal")
+				});
+			}
+			cn.close();
+		} catch (SQLException e) {
+			System.out.println("Error obteniendo detalle de caja: " + e.getMessage());
+		}
+		return modelo;
+	}
+	
+	public boolean cobrarPedido(int idPedido) {
+		// 1. Marcar pedido como PAGADO
+		// 2. Liberar la mesa
+		String sqlPedido = "UPDATE pedidos SET estado = 'PAGADO' WHERE id_pedido = ?";
+		String sqlMesa = "UPDATE mesas SET estado = 1 WHERE id_mesa = (SELECT id_mesa FROM pedidos WHERE id_pedido = ?)";
+		
+		try {
+			Connection cn = Conexion_mysql.conectar();
+			cn.setAutoCommit(false); // Iniciar transaccion
+			
+			// Actualizar Mesa
+			PreparedStatement pstMesa = cn.prepareStatement(sqlMesa);
+			pstMesa.setInt(1, idPedido);
+			pstMesa.executeUpdate();
+			
+			// Actualizar Pedido
+			PreparedStatement pstPedido = cn.prepareStatement(sqlPedido);
+			pstPedido.setInt(1, idPedido);
+			pstPedido.executeUpdate();
+			
+			cn.commit();
+			cn.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error cobrando pedido: " + e.getMessage());
+			return false;
+		}
+	}
 }

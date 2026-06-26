@@ -1,0 +1,15 @@
+=====================================
+        RESTAURANTE SYSGOURMET       
+        Comprobante de Pago          
+=====================================
+Pedido Nro: 2
+Mesa Mesa 03
+-------------------------------------
+CANT | PRODUCTO        | SUBTOTAL
+-------------------------------------
+1 x  Ceviche Clasico  =  S/ 25.0
+1 x  Suspiro a la Limena  =  S/ 12.0
+-------------------------------------
+TOTAL PAGADO: S/ 37.00
+=====================================
+      ¡Gracias por su visita!        

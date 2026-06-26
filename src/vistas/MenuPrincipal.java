@@ -111,12 +111,22 @@ public class MenuPrincipal extends JFrame {
 		btnempleados.setBorderPainted(false);
 		btnempleados.setFocusPainted(false);
 		btnempleados.setBackground(new Color(255, 165, 0));
+		btnempleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VistaEmpleados frm = new VistaEmpleados(idUsuarioLogueado);
+				frm.setVisible(true);
+				dispose();
+			}
+		});
 		btnempleados.setBounds(69, 206, 133, 142);
 		contentPane.add(btnempleados);
 		
 		JButton btncobrosYCaja = new JButton("<html><center>Cobros<br>y Caja</center></html>");
 		btncobrosYCaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VistaCaja frm = new VistaCaja(idUsuarioLogueado);
+				frm.setVisible(true);
+				dispose();
 			}
 		});
 		btncobrosYCaja.setVerticalTextPosition(SwingConstants.BOTTOM);

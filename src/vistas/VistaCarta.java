@@ -67,13 +67,14 @@ public class VistaCarta extends JFrame {
 		
 	
 		JLabel lblTitulo = new JLabel("CARTA");
+		lblTitulo.setForeground(new Color(0, 51, 51));
 		lblTitulo.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
 		lblTitulo.setBounds(20, 15, 86, 30);
 		contentPane.add(lblTitulo);
 		
 		// BOTON REGRESAR
 		JButton btnRegresar = new JButton("REGRESAR");
-		btnRegresar.setBackground(new Color(52, 73, 94));
+		btnRegresar.setBackground(new Color(0, 51, 51));
 		btnRegresar.setForeground(Color.WHITE);
 		btnRegresar.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnRegresar.addActionListener(new ActionListener() {
@@ -210,7 +211,7 @@ public class VistaCarta extends JFrame {
 		// CARGAR DATOS INICIALES
 		cargarTabla();
 		
-		// FONDO DE PANTALLA
+	
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new javax.swing.ImageIcon(VistaCarta.class.getResource("/imagenes/fondo_restaurante_blanco.png")));
 		lblFondo.setBounds(0, 0, 750, 461);
